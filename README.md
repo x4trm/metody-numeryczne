@@ -1,3 +1,2 @@
 # metody-numeryczne
-# metody-numeryczne
-# metody-numeryczne
+Kod z zajec "metody numeryczne" 
