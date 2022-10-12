@@ -8,19 +8,8 @@ namespace metody
 {
     public class Factorial
     {
-        public int n { get; set; }
-        public Factorial(int n)
-        {
-            if (n < 0)
-            {
-                throw new Exception("n<0");
-            }
-            else
-            {
-                this.n = n;
-            }
-        }
-        public int SolveInt()
+
+        public static int SolveInt(int n)
         {
             int result = 1;
             if(n == 0)
@@ -34,9 +23,9 @@ namespace metody
             }
             return result;
         }
-        public short SolveShort()
+        public static short SolveShort(int n)
         {
-            short result = 1;
+            short result = Convert.ToInt16(1);
             if (n == 0)
             {
                 return result;
@@ -48,9 +37,9 @@ namespace metody
             }
             return result;
         }
-        public long SolveLong()
+        public static long SolveLong(int n)
         {
-            long result = 1;
+            long result = Convert.ToInt64(1);
             if (n == 0)
             {
                 return result;
@@ -58,6 +47,20 @@ namespace metody
             while (n > 0)
             {
                 result *= Convert.ToInt64(n);
+                n--;
+            }
+            return result;
+        }
+        public static decimal SolveDecimal(decimal n)
+        {
+            decimal result = Convert.ToDecimal(1);
+            if (n == 0)
+            {
+                return result;
+            }
+            while (n > 0)
+            {
+                result *= Convert.ToDecimal(n);
                 n--;
             }
             return result;
