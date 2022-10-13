@@ -1,6 +1,6 @@
 
 from matrix import multipleMatrix,printMatrix
-from det import det2x2,det3x3
+from det import det2x2,det3x3,Laplace
 from factorial import factorial
 from naturalLogarithm import e
 print(e(26))
@@ -32,5 +32,12 @@ D=[
 ]
 print(det2x2(C))
 print(det3x3(D))
-
+F=[
+    [2,7,-1,3,2],
+    [0,0,1,0,1],
+    [-2,0,7,0,2],
+    [-3,-2,4,5,3],
+    [1,0,0,0,1]
+]
+print(Laplace(F))
 
