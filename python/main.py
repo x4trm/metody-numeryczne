@@ -1,5 +1,5 @@
 
-from matrix import multipleMatrix,printMatrix
+from matrix import multipleMatrix,printMatrix,inverse
 from det import det2x2,det3x3,Laplace
 from factorial import factorial
 from naturalLogarithm import e
@@ -45,7 +45,3 @@ F=[
 ]
 print(Laplace(F))
 
-a=Complex(1.23456789123456789,(4/3))
-b=Complex(1,2)
-print(a+b)
-print(a*b)
