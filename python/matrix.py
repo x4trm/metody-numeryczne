@@ -1,5 +1,6 @@
 from det import Laplace
-
+import numpy as np
+from numpy.linalg import inv
 
 def createMatrix(A,B):
     result=[]
@@ -41,3 +42,10 @@ def inverse(A):
         return multipleScalarMatrix(transpose(A),(1/det))
     else:
         return
+
+def solveMatrix(A,B):
+    return multipleMatrix(inv(A),B)
+
+# def cramer(A,B):
+#     D=Laplace(A)
+    
