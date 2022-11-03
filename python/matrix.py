@@ -46,6 +46,15 @@ def inverse(A):
 def solveMatrix(A,B):
     return multipleMatrix(inv(A),B)
 
-# def cramer(A,B):
-#     D=Laplace(A)
-    
+
+def gauss(A,B):
+    n=len(B)
+    for k in range(0,n-1):
+        for i in range(k+1,n):
+            if [i,k]!=0.0:
+                m=A[i,k]/A[k,k]
+                A[i,k+1:n]=A[i,k+1:n]-m*A[k,k+1:n]
+                B[i]=B[i]-m*B[k]
+    for k in range(n-1,-1,-1):
+        B[k]=(B[k]-np.dot(A[k,k+1:n],B[k+1:n]))/A[k,k]
+    return B
