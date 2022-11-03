@@ -49,29 +49,35 @@ def solveMatrix(A,B):
 
 def gauss(A,B):
     n=len(B)
-    for k in range(0,n-1):
-        for i in range(k+1,n):
-            if [i,k]!=0.0:
-                m=A[i,k]/A[k,k]
-                A[i,k+1:n]=A[i,k+1:n]-m*A[k,k+1:n]
-                B[i]=B[i]-m*B[k]
-    for k in range(n-1,-1,-1):
-        B[k]=(B[k]-np.dot(A[k,k+1:n],B[k+1:n]))/A[k,k]
-    return B
-# TODO: Naprawic gaussa-jordana
-# nie dziala poprawnie
-def gauss_jordan(A,B):
-    n=len(B)
-    for k in range(0,n-1):
-        for i in range(k+1,n):
-            if [i,k]!=0.0:
-                m=A[i,k]/A[k,k]
-                A[i,k+1:n]=A[i,k+1:n]-m*A[k,k+1:n]
-                B[i]=B[i]-m*B[k]
-    x=np.zeros(n)
     for i in range(n):
-        x[i]=B[i]/A[i][i]
-
+        for j in range(n):
+            if j!=i:
+                temp=A[j,i]/A[i,i]
+                for k in range(i+1,n+1):
+                    if k!=n:
+                        A[j,k]-=temp*A[i,k]
+                    else:
+                        B[j]-=temp*B[i]
+    x = np.zeros(n)
+    for i in range(n-1, -1, -1):
+        x[i] = B[i]/A[i, i]
+        for j in range (i-1, -1, -1):
+            A[i, i] += A[j, i]*x[i]
     return x
 
 
+def gauss_jordan(A,B):
+    n=len(B)
+    for i in range(n):
+        for j in range(n):
+            if j!=i:
+                temp=A[j,i]/A[i,i]
+                for k in range(i+1,n+1):
+                    if k!=n:
+                        A[j,k]-=temp*A[i,k]
+                    else:
+                        B[j]-=temp*B[i]
+    x=np.zeros(n)
+    for i in range(n):
+        x[i]=B[i]/A[i,i]
+    return x
