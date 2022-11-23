@@ -1,4 +1,4 @@
-from det import Laplace
+from det import Laplace,Delete_Row_Column
 import numpy as np
 from numpy.linalg import inv
 
@@ -36,12 +36,18 @@ def transpose(A):
             result[j][i]=A[i][j]
     return result
 
-def inverse(A):
-    det=Laplace(A)
-    if det!=0:
-        return multipleScalarMatrix(transpose(A),(1/det))
-    else:
-        return
+
+def inverseMatrix(A):
+    row,col=A.shape
+    if row==col:
+        det=Laplace(A)
+        result=np.zeros_like(A)
+        for i in range(row):
+            for j in range(col):
+                result[i,j]=1.0/det*Laplace(Delete_Row_Column(A,row,col))
+                if (row+col)%2==1:
+                    result[row,col]=-result[row,col]
+    return transpose(result)    
 
 def solveMatrix(A,B):
     return multipleMatrix(inv(A),B)
@@ -81,3 +87,19 @@ def gauss_jordan(A,B):
     for i in range(n):
         x[i]=B[i]/A[i,i]
     return x
+
+def MatrixLU(A,L,U):
+    row,col=A.shape
+    for i in range(row):
+        for j in range(row):
+            if j>i:
+                temp=A[j,i]/A[i,i]
+                for k in range(col):
+                    if k!=col:
+                        A[j,k]=A[j,k]*temp*A[i,k]
+                        if A[j,k]==0.0:
+                            L[j,k]=temp
+            elif j==i:
+                L[i,j]=1.0
+            U[i,j]=A[i,j]
+    return L,U
