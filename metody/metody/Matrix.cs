@@ -138,57 +138,34 @@ public static class Matrix
             throw new Exception("Error");
         }
     }
-    public static double[] Gauss(double[,] a,double[]b)
+    public static double[] Cramer(double[,] a,double[] b)
     {
-        int n = a.GetLength(0);
-        double[] result=new double[n];
-        double tmp=0;
-        for(int i=0;i<n;i++)
+        int liczbaWierszy=a.GetLength(0);
+        if(liczbaWierszy!=a.GetLength(1) || liczbaWierszy!=b.Length)
         {
-            for(int j=0;j<n;j++)
-            {    
-                if(j>i)
-                {
-                    tmp = a[j,i] / a[i,i]; // mnożnik
-                    for(int k=i+1;k<n+1;k++)
-                    {
-                        if(k!=n)
-                        {
-                            a[j,k]-=tmp*a[i,k];
-                        }
-                        else{
-                            b[j]-=tmp*b[i];
-                        }
-                    }// petla po kolumnach
-                }
-            }
+            throw new Exception("Error");
         }
-        // for(int i=n;n>=0;i--)
-        // {
-        //     result[i]=b[i]/a[i,i];
-        //     for(int j=i;j>=0;j--)
-        //     {
-        //         a[i,i]+=a[j,i]*result[i];
-        //     }
-        // }
-        // for(int i=n-1;i>=0;i--)
-        // {
-        //     result=
-        //     for(int j=i;j<=n-1;j++)
-        //     {
-        //         tmp+=a[i,j]*result[j];
-        //     }
-        //     result[i]=(b[i]-tmp)/a[i,i];
-        // }
-        // for(int i=n-1;i>=0;i--)
-        // {
-        //     tmp=0;
-        //     for(int j=i;j<=n-1;j++)
-        //     {
-        //         tmp+=a[i,j]*result[j];
-        //     }
-        //     result[i]=(b[i]-tmp)/a[i,i];
-        // }
+        double[] result= new double[liczbaWierszy];
+        double[] tmp=new double[liczbaWierszy];
+        double wyznacznik=LaplaceDet(a);
+        for(int i=0;i<liczbaWierszy;i++)
+        {
+            for(int j=0;j<liczbaWierszy;j++)
+            {
+                tmp[j]=a[j,i];
+            }
+            for(int j=0;j<liczbaWierszy;j++)
+            {
+                a[j,i]=b[j];
+            }
+            double det=LaplaceDet(a);
+            for(int j=0;j<liczbaWierszy;j++)
+            {
+                a[j,i]=tmp[j];
+            }
+            result[i]=det/wyznacznik;
+        }
         return result;
     }
+       
 }
