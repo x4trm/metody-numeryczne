@@ -167,5 +167,49 @@ public static class Matrix
         }
         return result;
     }
-       
+    public static double[] Gauss(double[,] a, double[] b)
+        {
+
+            int liczbaWierszy = a.GetLength(0);
+            if (liczbaWierszy != a.GetLength(1) || liczbaWierszy != b.Length)
+                throw new Exception("Error");
+
+            double[] result = new double[liczbaWierszy];
+            double[,] a2 = new double[liczbaWierszy, liczbaWierszy];
+            for (int i = 0; i < liczbaWierszy; i++)
+            {
+                for (int j = 0; j < liczbaWierszy; j++)
+                    a2[i, j] = a[i, j];
+            }
+            double[] b2 = new double[liczbaWierszy];
+            for (int i = 0; i < liczbaWierszy; i++)
+                b2[i] = b[i];
+
+            
+            for (int i = 0; i < liczbaWierszy; i++) 
+            {
+                for (int j = i + 1; j < liczbaWierszy; j++)
+                {
+                    double tmp = a2[j, i] / a2[i, i];
+                    a2[j, i] = 0;
+                    for (int k = i + 1; k < liczbaWierszy; k++)
+                    {
+                        a2[j, k] = a2[j, k] - tmp * a2[i, k];
+                    }
+                    b2[j] = b2[j] - tmp * b2[i];
+                }
+            }
+
+            for (int i = liczbaWierszy - 1; i >= 0; i--)
+            {
+                double tmp = b2[i];
+                for (int j = i + 1; j < liczbaWierszy; j++)
+                    tmp -= a2[i, j] * result[j];
+                tmp /= a2[i, i];
+                result[i] = tmp;
+            }
+            return result;
+
+        }
+ 
 }

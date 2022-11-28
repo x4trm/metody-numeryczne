@@ -7,18 +7,18 @@ namespace metody
         {
             double[,] A = { { -1, 4, 2, -2 }, { 1, 2, -3, 0 }, { -1, 0, 0, 5 } };
             double[,] B = { { 2, -1 }, { 1, 3 }, { -2, 0 }, { 0, -4 } };
-            double[,] C = {{-1,2,-3,3,5},{8,0,7,4,-5},{-3,4,-3,2,-2},{8,-3,-2,1,2},{-2,-1,-6,9,0}};
+            double[,] C = {{-1,2,-3,3,5},{8,0,7,4,-1},{-3,4,-3,2,-2},{8,-3,-2,1,2},{-2,-1,-6,9,0}};
             double[] D={56,62,-10,14,28};
             double[,] E={{1,3,2},{4,-1,2},{1,-1,0}};
             double[,] F={{5,-2,3},{-2,3,1},{-1,2,3}};
             double[] G={21,-4,5};
             // double [,]result=Matrix.MacierzOdwrotna(E);
-            // double[] result=Matrix.GaussC(C,D);
+            double[] result=Matrix.Gauss(C,D);
             // Console.WriteLine(Matrix.Cramer(F,G));
-            // for(int i=0;i<result.GetLength(0);i++)
-            // {
-            //     Console.WriteLine(result[i]);
-            // }
+            for(int i=0;i<result.GetLength(0);i++)
+            {
+                Console.WriteLine(result[i]);
+            }
             // double[,] result = Matrix.Transpose(B);
             // for (int i = 0; i < result.GetLength(0); i++)
             // {
