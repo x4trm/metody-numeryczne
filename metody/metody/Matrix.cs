@@ -211,5 +211,53 @@ public static class Matrix
             return result;
 
         }
+        public static double[] GaussJordan(double[,] a,double[] b)
+        {
+            int liczbaWierszy=a.GetLength(0);
+            if (liczbaWierszy != a.GetLength(1) || liczbaWierszy != b.Length)
+                throw new Exception("Error");
+
+            double[] result = new double[liczbaWierszy];
+            double[,] a2 = new double[liczbaWierszy, liczbaWierszy];
+            for (int i = 0; i < liczbaWierszy; i++)
+            {
+                for (int j = 0; j < liczbaWierszy; j++)
+                    a2[i, j] = a[i, j];
+            }
+            double[] b2 = new double[liczbaWierszy];
+            for (int i = 0; i < liczbaWierszy; i++)
+                b2[i] = b[i];
+
+            for(int i=0;i<liczbaWierszy;i++)
+            {
+                for(int j=0;j<liczbaWierszy;j++)
+                {
+                    if(j!=i)
+                    {
+                        double tmp=a[j,i]/a[i,i];
+                        for(int k=0;k<liczbaWierszy+1;k++)
+                        {
+                            if(k!=liczbaWierszy)
+                            {
+                                a[j,k]=a[j,k]-tmp*a[i,k];
+                            }
+                            else{
+                                b[j]=b[j]-tmp*b[i];
+                            }
+                        }
+                    }
+                }
+            }
+            for(int i=liczbaWierszy-1; i>=0; i--){
+                double tmp=0;
+                for(int j=i; j<=liczbaWierszy-1; j++)
+                tmp+=a[i,j]*result[j];
+                
+                result[i]=(b[i]-tmp)/a[i,i];
+            }
+
+            return result;
+                      
+        }
  
 }

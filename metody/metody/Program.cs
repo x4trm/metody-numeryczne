@@ -13,7 +13,7 @@ namespace metody
             double[,] F={{5,-2,3},{-2,3,1},{-1,2,3}};
             double[] G={21,-4,5};
             // double [,]result=Matrix.MacierzOdwrotna(E);
-            double[] result=Matrix.Gauss(C,D);
+            double[] result=Matrix.GaussJordan(C,D);
             // Console.WriteLine(Matrix.Cramer(F,G));
             for(int i=0;i<result.GetLength(0);i++)
             {
