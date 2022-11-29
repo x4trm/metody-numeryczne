@@ -489,5 +489,41 @@ public static class Matrix
 		}
 		return result;	
 	}
+	public static double[,] OdwracanieLU(double[,] a)
+	{
+        int liczbaWierszy = a.GetLength(0);
+        if (liczbaWierszy != a.GetLength(1))
+            throw new Exception("Error");
+        (double[,] L,double[,] U)=Doolitle(a);
+		double[] e=new double[liczbaWierszy];
+		double[,] up= new double[liczbaWierszy,liczbaWierszy];
+		double[,] down= new double[liczbaWierszy,liczbaWierszy];
+		for(int i=0;i<liczbaWierszy;i++)
+		{
+			for(int j=0;j<liczbaWierszy;j++)
+			{
+				e[j]=0;
+			}
+			e[i]=1;
+			double[]tmpL=SolveL(L,e);
+			double[]tmpU=SolveU(U,e);
+			for(int j=0;j<liczbaWierszy;j++)
+			{
+				up[i,j]=tmpL[j];
+				down[i,j]=tmpU[j];
+			}
+		}
+		return Mnozenie(up,down);	
+	}
+	public static double DetLU(double[,]a)
+	{
+        int liczbaWierszy = a.GetLength(0);
+        if (liczbaWierszy != a.GetLength(1))
+            throw new Exception("Error");
+        (double[,] L,double[,] U)=Doolitle(a);
+		double detL=LaplaceDet(L);
+		double detU=LaplaceDet(U);		
+		return detL*detU;
+	}
 #endregion
 }

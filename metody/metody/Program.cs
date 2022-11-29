@@ -49,6 +49,8 @@ namespace metody
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("--------------DET-------");
+            Console.WriteLine(Matrix.DetLU(C));
         }
         static void Main(string[] args)
         {

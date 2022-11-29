@@ -16,3 +16,7 @@
 |   3	|   4	|  Metoda Gaussa-Jordana	| Done	|   Improve	|
 |   3	|   5	|  Pivoting	| Done	|   	|
 |   3	|   6	|  Odwrocanie Metoda Gaussa	| Done	|   	|
+|   4	|   1	|  Rozklad LU	| Done	|   	|
+|   4	|   3	|  Rozwiazanie Ukladu Metoda LU	| Done	|   	|
+|   4	|   4	|  Macierz Odwrotna	| Done	|   	|
+|   4	|   5	|  Wyznacznik Metoda LU	| Done	|   	|
