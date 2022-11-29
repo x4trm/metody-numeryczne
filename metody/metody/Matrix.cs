@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 
 namespace metody;
 
@@ -398,5 +397,97 @@ public static class Matrix
 	}
 	
 #endregion
- 
+#region LU
+	public static (double[,],double[,]) Doolitle(double[,] a)
+	{
+		int liczbaWierszy=a.GetLength(0);
+		if(liczbaWierszy!=a.GetLength(1))
+		{
+			throw new Exception("Error");
+		}
+		double[,] U=new double[liczbaWierszy,liczbaWierszy];
+		double[,] L=new double[liczbaWierszy,liczbaWierszy];
+		for(int i=0;i<liczbaWierszy;i++)
+		{
+			for(int j=0;j<liczbaWierszy;j++)
+			{
+				U[i,j]=a[i,j];
+			}
+		}
+		for(int i=0;i<liczbaWierszy;i++)
+		{
+			L[i,i]=1;
+		}
+		for (int i = 0; i < liczbaWierszy; i++) 
+        {
+            for (int j = i + 1; j < liczbaWierszy; j++)
+            {
+                double x = U[j, i] / U[i, i];
+                U[j, i] = 0;
+                for (int k = i + 1; k < liczbaWierszy; k++)
+                {
+                    U[j, k] = U[j, k] - x * U[i, k];
+                }
+                L[j, i] = x;
+            }
+        }
+		return (L,U);
+	} 
+	public static double[] SolveLU(double[,] L,double[] b)
+	{
+        int liczbaWierszy = L.GetLength(0);
+        if (liczbaWierszy != L.GetLength(1) || liczbaWierszy != b.Length)
+            throw new Exception("Error");
+
+        double[] result= new double [liczbaWierszy];
+        for(int i=0; i<liczbaWierszy; i++)
+        {
+
+            double x = b[i];
+            for(int j=0; j<liczbaWierszy; j++)
+            {
+                x -= result[j] * L[i, j];
+            }
+            x /= L[i, i];
+            result[i] = x;
+        }
+        return result;	
+	}
+	public static double[] SolveL(double[,] L,double[]b)
+	{
+        int liczbaWierszy = L.GetLength(0);
+        if (liczbaWierszy != L.GetLength(1) || liczbaWierszy != b.Length)
+            throw new Exception("Error");
+		double[] result=new double[liczbaWierszy];
+		for(int i=0;i<liczbaWierszy;i++)
+		{
+			double tmp=b[i];
+			for(int j=0;j<liczbaWierszy;j++)
+			{
+				tmp-=result[j]*L[i,j];
+			}
+			tmp/=L[i,i];
+			result[i]=tmp;
+		}
+		return result;
+	}
+	public static double[] SolveU(double[,] U,double[] b)
+	{
+        int liczbaWierszy = U.GetLength(0);
+        if (liczbaWierszy != U.GetLength(1) || liczbaWierszy != b.Length)
+            throw new Exception("Error");	
+		double[] result=new double[liczbaWierszy];
+		for(int i=liczbaWierszy-1;i>=0;i--)
+		{
+			double tmp=b[i];
+			for(int j=i+1;j<liczbaWierszy;j++)
+			{
+				tmp-=result[j]*U[i,j];
+			}
+			tmp/=U[i,i];
+			result[i]=tmp;
+		}
+		return result;	
+	}
+#endregion
 }
