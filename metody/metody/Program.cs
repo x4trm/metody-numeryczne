@@ -9,7 +9,8 @@ namespace metody
             double[] D={56,62,-10,14,28};
             double[] f={2,3,1,3};
             double[,] U={{1,0,Math.Cos(0),Math.Sin(0)},{1,1.5,Math.Cos(1.5),Math.Sin(1.5)},{1,3,Math.Cos(3),Math.Sin(3)},{1,4,Math.Cos(4),Math.Sin(4)}};
-            double[] result=Interpolation.Solve(U,f);
+            double[,] U2={{1,0,0,0},{1,1.5,1.5*1.5,1.5*1.5*1.5},{1,3,9,27},{1,4,16,64}};
+            double[] result=Interpolation.Solve(U2,f);
             for(int i=0;i<result.GetLength(0);i++)
             {
                 Console.WriteLine(result[i]);
