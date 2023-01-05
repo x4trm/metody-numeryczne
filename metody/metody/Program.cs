@@ -62,7 +62,8 @@ namespace metody
         }
         static void Main(string[] args)
         {
-            foo();
+            // foo();
+            Integration.Ex7();
         }
     }
 };
