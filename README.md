@@ -22,3 +22,14 @@
 |   4	|   5	|  Wyznacznik Metoda LU	| Done	|   	|
 |   **5**	|   **1**	|  **Wyznaczenie współczynników interpolacyjnych**	| **Done**	|   	|
 |   5	|   2	|  Wyznaczenie współczynników interpolacyjnych	| Done	|   	|
+|   **6**	|   **1**	|  **Zadanie Sinus**	| **Done**	|   	|
+|   6	|   2	|  Zadanie Wielomian	| Done	|   	|
+|   6	|   3	|  Zadanie Sinus Parametry	| Done	|   	|
+|   6	|   4	|  Zadanie Exp  | Done	|   	|
+|   6	|   5	|  Druga Pochodna Funkcji	| Done	|   	|
+|   6	|   6	|  Druga Pochodna Exp	| Done	|   	|
+|   **7**	|   **0**	|  **Implementacja metody Prostokatow, Trapezow, Simpsona**	| **Done**	|   	|
+|   7	|   1	|  Funkcja Wielomianowa	| Done	|   	|
+|   7	|   2	|  Funkcja Rzeczywista	| Done	|   	|
+|   7	|   3	|  Funkcja cos(x)+e^x+tg(x)	| Done	|   	|
+|   7	|   7	|  Zadanie z pojazdem	| Done	|   	|
